@@ -4,11 +4,14 @@
         <ul class="shop_detail">
           <li v-for="(item,index) in shopList">
             <img :src="item.imgname" alt="">
+            <!-- <img :src="baseImgUrl+shop.iamge_path" alt=""> -->
             <div class="shop_detail_center">
               <h2 class="h_title">
                 <span style="background:#F9D755;padding:2px">{{item.pinpai}}</span>
                 <b>{{item.title}}</b>
               </h2>
+              </p>
+              <Star :score="item.pinfen" :size="24"></Star>
               <p>
                 <span style="color:#F79A35">评分:{{item.pinfen}}</span>
                 <span>月售{{item.shoudan}}单</span>
@@ -31,9 +34,12 @@
       </div>
 </template>
 <script>
+import {mapState} from 'vuex'
+import Star from '../Star/Star.vue'
   export default {
     data() {
       return {
+        baseImgUrl:'https://raw.githubusercontent.com/W-Qing/Vue-MintShop/master/mintshop-client/src/components/ShopList/images/',
          shopList:[
             {imgname:require("./images/shop/00.jpg"),pinpai:"品牌",title:"嘉禾一品(温都水城)",pinfen:"5分",shoudan:"106",qisong:"20",peisong:"5"},
             {imgname:require("./images/shop/01.jpg"),pinpai:"品牌",title:"闪电哥哥慰问费22",pinfen:"4.6分",shoudan:"654",qisong:"20",peisong:"5"},
@@ -44,6 +50,12 @@
         ]
       }
     },
+    computed: {
+      ...mapState(['shops'])
+    },
+    components:{
+      Star
+    }
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">

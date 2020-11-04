@@ -6,6 +6,9 @@ import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+
+// 注册store
+import store from './store'
  Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
@@ -13,5 +16,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
- render:h=>h(App)
+ render:h=>h(App),
+ store
 })

@@ -2,8 +2,9 @@
   <div id="app">
     <section class="msite">
     <!-- 首页头部 -->
+     <!-- <HeaderTop :title="address.name"> -->
      <HeaderTop title="陕西省西安市雁塔区高新路50号南洋国际">
-       <span class="header_search" slot="search">
+       <span class="header_search" slot="search" @click="login('/search')">
           <i class="icon iconfont icon-sousuo"></i>
         </span>
        <span class="header_login" slot="login_reg">
@@ -32,7 +33,7 @@
         <div class="swiper-pagination"></div>
       </swiper>
       <!-- 首页附近商家 -->
-     <ShopList></ShopList>s
+     <ShopList></ShopList>
     </section>
   </div>
 </template>
@@ -40,6 +41,8 @@
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 import ShopList from '../../components/ShopList/ShopList.vue'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import {mapState} from 'vuex'
+import { reqCategorys } from '../../../../Vue-MintShop/mintshop-client/src/api'
 export default {
   data() {
     return {
@@ -71,22 +74,81 @@ export default {
     SwiperSlide,
     ShopList
   },
+  computed: {
+    ...mapState(['address','categorys']),
+    /**
+     * 根据categorys一位数组生成一个二维数组
+     * 小数组中的元素个数最大是8
+     */
+    categorysArr(){
+      const {categorys}=this
+      //准备一个空的二维数组
+      const arr=[];
+      // 准备一个小数组（最大长度为8）
+      let minArr=[]
+      //遍历categorys
+      categorys.forEach(c=>{
+        // 如果当前小数组已经满了，创建一个新的
+        if(minArr.length===8){
+          minArr=[]
+        }
+        //如果minArr是空的，将小数组保存在大数组中
+        if(minArr.length===0){
+          arr.push(minArr)
+        }
+        minArr.push(c)
+      })
+      return []
+    }
+  },
   methods: {
     login(path){
       this.$router.push(path)
     }
   },
   mounted() {
-    // 创建一个swiper实例对象，来实现轮播
-    new Swiper(".swiper-container",{
-      autoplay: true,
-      loop:true, //可以循环轮播
-      pagination:{
-        el:'.swiper-pagination',
-        clickable:true,
-      },//这样写小圆点就有了
-    })
+    // 发送请求
+    this.$store.dispatch('getCategorys')
+    // setTimeout(()=>{
+    //   new Swiper(".swiper-container",{
+    //     autoplay: true,
+    //     loop:true, //可以循环轮播
+    //     pagination:{
+    //       el:'.swiper-pagination',
+    //       clickable:true,
+    //     },//这样写小圆点就有了
+    //   })
+    // },200000)
   },
+  watch: {
+    //categorys(value){//categorys数组是有数据了，在异步更新界面之前执行
+      // 创建一个swiper实例对象，来实现轮播
+    // 使用setTimeout()可以实现效果，但不是最好的
+      // setTimeout(()=>{
+      //   new Swiper(".swiper-container",{
+      //   autoplay: true,
+      //   loop:true, //可以循环轮播
+      //   pagination:{
+      //     el:'.swiper-pagination',
+      //     clickable:true,
+      //   },//这样写小圆点就有了
+      // })
+      // },100)
+     // }
+      // 界面更新就立即创建swiper对象
+      getCategorys(){
+        this.$nextTick(()=>{//一旦完成界面更新，立即调用（此条语句要写在数据更新以后）
+          new Swiper(".swiper-container",{
+            autoplay: true,
+            loop:true, //可以循环轮播
+            pagination:{
+              el:'.swiper-pagination',
+              clickable:true,
+            },//这样写小圆点就有了
+          })
+        })
+      }
+  }
 };
 </script>
 <style  lang="stylus" rel="stylesheet/stylus">

@@ -6,18 +6,18 @@
       <span class="item_icon">
         <i class="iconsize icon iconfont icon-wode"></i>
       </span>
-      <div class="pro_login">
+      <router-link :to="userInfo._id ? '/userinfo' :'/login'" class="pro_login">
         <p>
-          <span @click="login('/login')">登录</span>
-          <span @click="login('/register')"> / 注册</span>
+          <span v-if="!userInfo.phone">{{userInfo.name ||'登录 / 注册'}}</span>
         </p>
         <p>
           <span class="item_icon">
             <i class="phone icon iconfont icon-dingdan"></i>
           </span>
-          <span>暂无绑定手机号</span>
+          <!-- <span>暂无绑定手机号</span> -->
+          <span>{{userInfo.phone || '暂无绑定手机号'}}</span>
         </p>
-      </div>
+      </router-link>
       <div class="login_back">&gt;</div>
     </div>
     <!-- 余额 积分 优惠 -->
@@ -61,8 +61,12 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 export default {
+  computed: {
+    ...mapState(['userInfo'])
+  },
   components: {
     HeaderTop
   },
@@ -99,6 +103,9 @@ export default {
     .pro_login
       margin-top 25px
       margin-left -10px
+      text-decoration none
+      display block
+      color: #ffffff;
       >p
         margin-bottom 10px 
         .phone
