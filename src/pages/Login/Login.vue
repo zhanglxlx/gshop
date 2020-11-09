@@ -41,14 +41,15 @@
                 <img class="get_verification" src="http://localhost:4000/captcha" alt="captcha" @click="getCaptcha" ref="captcha">
               </section>
             </section>
-          </div>
-          <button class="login_submit">登录</button>
-        </form>
+          </div> 
+          <button class="login_submit">登 录</button>
+          <button class="login_submit" @click="$router.push('/register')">注 册</button>
+        </form> 
         <a href="javascript:;" class="about_us">关于我们</a>
       </div>
       <!--利用$router.back()返回上一级路由 -->
       <a href="javascript:" class="go_back" @click="$router.back()">
-        <i class="iconfont icon-arrow-left"></i>
+        <i class="icon iconfont icon-fanhui"></i>
       </a>
     </div>
     <AlertTip :alertText="alertText" v-show="alertShow" @closeTip="closeTip"/>

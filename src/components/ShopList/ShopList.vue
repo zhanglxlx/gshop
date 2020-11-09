@@ -2,7 +2,7 @@
    <div class="msite_shop_list">
         <h3 style="font-size:20px">附近商家</h3>
         <ul class="shop_detail">
-          <li v-for="(item,index) in shopList">
+          <li v-for="(item,index) in shopList" :key="index" @click="$router.push('/shop')">
             <img :src="item.imgname" alt="">
             <!-- <img :src="baseImgUrl+shop.iamge_path" alt=""> -->
             <div class="shop_detail_center">
@@ -11,7 +11,7 @@
                 <b>{{item.title}}</b>
               </h2>
               </p>
-              <Star :score="item.pinfen" :size="24"></Star>
+              <!-- <Star :score="item.pinfen" :size="24"></Star> -->
               <p>
                 <span style="color:#F79A35">评分:{{item.pinfen}}</span>
                 <span>月售{{item.shoudan}}单</span>
@@ -61,7 +61,6 @@ import Star from '../Star/Star.vue'
 <style lang="stylus" rel="stylesheet/stylus">
 @import "../../common/stylus/mixins.styl"
   .msite_shop_list
-    width 100%
     padding 10px
     .shop_detail
       >li

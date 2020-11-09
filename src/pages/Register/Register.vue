@@ -57,6 +57,7 @@ export default {
 @import '../../common/stylus/mixins.styl';
 .register
   width 100%
+  height 740px
   .register_logo
     color: $green;
     margin-top: 80px;

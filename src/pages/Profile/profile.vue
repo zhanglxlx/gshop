@@ -58,10 +58,13 @@
         <span class="login_back">&gt;</span>
       </li>
     </ul>
+    <!-- <mt-button type="danger" style="width:100%" v-if="userInfo._id" @click="loguout">退出登录</mt-button> -->
+    <mt-button type="danger" style="width:100%" @click="logout">退出登录</mt-button>
   </div>
 </template>
 <script>
 import {mapState} from 'vuex'
+import { MessageBox } from 'mint-ui'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 export default {
   computed: {
@@ -76,6 +79,17 @@ export default {
   methods: {
     login(path){
       this.$router.push(path)
+    },
+    logout(){
+      MessageBox.confirm('确定要退出登录吗?').then(
+        action=>{
+          //请求退出
+          this.$store.dispatch('logout')
+        },
+        action=>{
+          console.log('点击了取消')
+        },
+      )
     }
   },
 };

@@ -14,13 +14,14 @@ export default {
   components:{
     FooterGuide
   },
-  // computed: {
-  //   ...mapActions(['getAddress'])
-  // },
+  computed: {
+    ...mapActions(['getAddress'])
+  },
   mounted() {
-    // this.$store.dispatch('getAddress')
-    this.getAddress()
-    this.getUserInfo()
+    this.$store.dispatch('getAddress')
+    this.$store.dispatch('getUserInfo')
+    // this.getAddress()
+    // this.getUserInfo()
   },
 
 }
