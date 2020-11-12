@@ -3,7 +3,8 @@
         <h3 style="font-size:20px">附近商家</h3>
         <ul class="shop_detail">
           <li v-for="(item,index) in shopList" :key="index" @click="$router.push('/shop')">
-            <img :src="item.imgname" alt="">
+            <!-- <img :src="item.imgname" alt=""> -->
+            <img v-lazy="item.imgname" alt="">
             <!-- <img :src="baseImgUrl+shop.iamge_path" alt=""> -->
             <div class="shop_detail_center">
               <h2 class="h_title">

@@ -112,8 +112,9 @@ export default {
     font-size: 16px;
     display: inline-flex;
     .iconsize
-      font-size: 95px;
-      margin: 15px;
+      font-size: 90px;
+      margin: 21px;
+      border-radius 50%
     .pro_login
       margin-top 25px
       margin-left -10px

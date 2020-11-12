@@ -81,7 +81,7 @@
             {{info.bulletin}}
           </div>
           <div class="mask-footer" @click="toggleShopShow">
-            <span class="icon iconfont icon-guanbi"></span>
+            <span class="icon iconfont icon-guanbi7-01"></span>
           </div>
         </div>
         <div class="brief-modal-cover"></div>

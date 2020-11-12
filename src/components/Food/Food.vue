@@ -34,7 +34,6 @@ export default {
   props: {
     food: Object
   },
-
   data () {
     return {
       isShow: false

@@ -53,7 +53,7 @@ export default {
        */
       Vue.set(food, 'count', 1) // 让新增的属性也有数据绑定
       // 将food添加到cartFoods中
-      state.cartFoods.push(food)
+      state.cartFoods.push(food) 
     } else {
       food.count++
     }
@@ -62,7 +62,7 @@ export default {
     if (food.count) { // 只有有值才去减
       food.count--
       if (food.count === 0) {
-        // 将food从cartFoods中移除
+        // 将food从cartFoods中移除 splice移除
         state.cartFoods.splice(state.cartFoods.indexOf(food), 1)
       }
     }
@@ -73,7 +73,7 @@ export default {
     // 移除购物车中所有购物项
     state.cartFoods = []
   },
-  [RECEIVE_SEARCH_SHOPS] (state, {searchShops}) {
+  [RECEIVE_SEARCH_SHOPS] (state, {searchShops}) { //搜索信息列表
     state.searchShops = searchShops
   }
 }

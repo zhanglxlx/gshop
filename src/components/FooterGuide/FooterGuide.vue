@@ -14,7 +14,7 @@
     </a>
     <a href="javascript:;" class="guide_item" :class="{on:'/order'===$route.path}" @click="goTo('/order')">
       <span class="item_icon">
-        <i class="confont icon iconfont icon-dingdan"></i>
+        <i class="confont icon iconfont icon-icon-"></i>
       </span>
       <span>订单</span>
     </a>

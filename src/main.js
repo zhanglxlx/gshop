@@ -14,8 +14,18 @@ import './mock/mockServer' //加载mockServer即可
 Vue.component(Button.name,Button)   //mt-button标签就可以使用了
 // 注册store
 import store from './store'
- Vue.use(VueAwesomeSwiper)
+Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
+
+import Vant,{Lazyload} from 'vant';
+
+import loading from './components/imgs/11.jpg'
+import './filters' //加载过滤器
+// options 为可选参数，无则不传
+Vue.use(Lazyload,{ //内部自定义一个指定lazy 
+  loading
+})
+Vue.use(Vant);
 
 /* eslint-disable no-new */
 new Vue({

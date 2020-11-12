@@ -1,10 +1,11 @@
 <template>
   <div class="cartcontrol">
     <transition name="move">
-      <div class="iconfont icon-removecircleoutline" v-if="food.count" @click.stop="updateFoodCount(false)"></div>
+      <div class="icon iconfont icon-jianhao" v-if="food.count" @click.stop="updateFoodCount(false)"></div>
     </transition>
     <div class="cart-count" v-if="food.count">{{food.count}}</div>
-    <div class="iconfont icon-addcircle" @click.stop="updateFoodCount(true)"></div>
+    <!-- 阻止默认行为 加.stop= -->
+    <div class="iconfont icon icon-jiahao" @click.stop="updateFoodCount(true)"></div>
   </div>
 </template>
 
@@ -22,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style  lang="stylus" rel="stylesheet/stylus">
 @import "../../common/stylus/mixins.styl"
 .cartcontrol
   font-size: 0
@@ -32,8 +33,7 @@ export default {
     line-height: 24px
     font-size: 24px
     color: rgb(0, 160, 220)
-
-  .icon-removecircleoutline
+  .icon-jianhao
     display: inline-block
     padding 6px
     line-height 24px
@@ -53,7 +53,7 @@ export default {
     text-align: center
     font-size: 10px
     color: rgb(147, 153, 159)
-  .icon-addcircle
+  .icon-jiahao
     display: inline-block
     padding: 6px
     line-height: 24px

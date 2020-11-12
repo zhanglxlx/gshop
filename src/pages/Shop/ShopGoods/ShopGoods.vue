@@ -8,7 +8,7 @@
          <!-- 动态class 实现滑动的效果 currentIndex计算属性 scrollY右侧滚动到y轴的坐标（滑动过程时实时变化） tops:所有右侧分类li的top组成的数组 （列表第一次显示后就不在变化）-->
           <li class="menu-item" v-for="(good, index) in goods" :class="{current: index===currentIndex}" @click="clickMenuItem(index)" :key="index">
             <span class="text bottom-border-1px">
-              <img class="icon" :src="good.icon" v-if="good.icon">
+              <img class="icon" v-lazy="good.icon" v-if="good.icon">
               {{good.name}}
             </span>
           </li>
@@ -24,9 +24,9 @@
             <!-- 显示某一个实物列表的分类 -->
             <ul>
               <li class="food-item bottom-border-1px" v-for="(food, index) in good.foods"
-                  :key="index" @click="showFood(food)">
+                  :key="index"  @click="showFood(food)">
                 <div class="icon">
-                  <img width="57" height="57" :src="food.icon">
+                  <img width="57" height="57" v-lazy="food.icon">
                 </div>
                 <div class="content">
                   <h2 class="name">{{food.name}}</h2>
@@ -68,7 +68,7 @@ export default {
   data () {
     return {
       scrollY: 0, // 右侧 Y 轴滑动的坐标(越往下数值越小)
-      tops: [], // 包含右侧所有分类小列表的 top 值
+      tops: [], // 所有右侧所有分类li的top组成的数组 （列表第一次显示后就不再变化）
       food: {} // 需要显示的food
     }
   },

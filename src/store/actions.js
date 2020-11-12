@@ -5,7 +5,7 @@ Action:通过操作mutation间接更新state的多个方法的对象
 // 注意要引入api接口函数
 import {
   reqAddress,
-  // reqCategorys,
+  reqCategorys,
   reqShops,
   reqUserInfo,
   reqLogout,
@@ -25,8 +25,8 @@ import {
   RECEIVE_INFO,
   INCREMENT_FOOD_COUNT,
   DECREMENT_FOOD_COUNT,
-  // CLEAR_CART,
-  // RECEIVE_SEARCH_SHOPS
+  CLEAR_CART,
+  RECEIVE_SEARCH_SHOPS
 } from './mutation-types'
 export default {
   // 异步获取地址
@@ -128,7 +128,7 @@ export default {
     commit(CLEAR_CART)
   },
 
-  // 异步获取商家商品列表
+  // 异步获取搜索商家商品列表
   async searchShops ({commit, state}, keyword) {
     const geohash = state.latitude + ',' + state.longitude
     const result = await reqSearchShop(geohash, keyword)

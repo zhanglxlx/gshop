@@ -11,9 +11,7 @@
           <div class="delivery-money">配送费￥{{info.deliveryPrice}}</div>
         </div>
       </section>
-
       <div class="split"></div>
-
       <section class="section">
         <h3 class="section-title">活动与服务</h3>
         <div class="activity">
@@ -26,15 +24,13 @@
           </div>
         </div>
       </section>
-
       <div class="split"></div>
-
       <section class="section">
         <h3 class="section-title">商家实景</h3>
         <div class="pic-wrapper">
           <ul class="pic-list" ref="picsUl">
             <li class="pic-item" v-for="(pic, index) in info.pics" :key="index">
-              <img width="120" height="90" :src="pic"/>
+              <img width="120" height="90" v-lazy="pic"/>
             </li>
           </ul>
         </div>
@@ -88,7 +84,6 @@ export default {
       const space = 6
       const count = this.info.pics.length
       ul.style.width = (liWidth + space) * count - space + 'px'
-
       new BScroll('.pic-wrapper', {
         scrollX: true // 水平滑动
       })

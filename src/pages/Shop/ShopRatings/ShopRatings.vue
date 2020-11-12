@@ -62,6 +62,7 @@
                 <span class="iconfont" :class="rating.rateType===0 ? 'icon-thumb_up' : 'icon-thumb_down'"></span>
                 <span class="item" v-for="(item, index) in rating.recommend" :key="index">{{item}}</span>
               </div>
+              <!-- 过滤器设置时间  | date-format-->
               <div class="time">{{rating.rateTime | date-format}}</div>
             </div>
           </li>
@@ -77,7 +78,6 @@ import {mapState, mapGetters} from 'vuex'
 import Star from '../../../components/Star/Star.vue'
 
 export default {
-
   data () {
     return {
       onlyShowText: true, // 是否只显示有文本的评价信息
@@ -142,7 +142,7 @@ export default {
     setSelectType (selectType) {
       this.selectType = selectType
     },
-    toggleOnlyShowText () {
+    toggleOnlyShowText () { //切换全部，满意，不满意
       this.onlyShowText = !this.onlyShowText
     }
   },
